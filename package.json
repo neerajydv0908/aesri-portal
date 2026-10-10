@@ -1,0 +1,68 @@
+{
+  "name": "aesri-portal",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Campus Portal for Aryavart Educational and Social Research Institute (AESRI) and its schools",
+  "scripts": {
+    "dev": "next dev --port 3001",
+    "build": "next build",
+    "start": "node scripts/with-production-secrets.mjs start",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "setup": "tsx scripts/setup.ts",
+    "admin:create": "tsx scripts/create-admin.ts",
+    "fees:relabel": "tsx scripts/relabel-fees.ts",
+    "demo": "tsx scripts/demo.ts",
+    "test": "node --import tsx --test tests/unit/*.test.ts",
+    "test:e2e": "playwright test",
+    "demo:code": "tsx scripts/demo-code.ts",
+    "sms:send": "tsx scripts/sms-send.ts",
+    "payments:check": "tsx scripts/payments-check.ts",
+    "signin:unlock": "tsx scripts/unlock-signin.ts",
+    "production": "node scripts/with-production-secrets.mjs"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "0.5.8",
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@fontsource-variable/noto-sans-devanagari": "^5.3.0",
+    "@fontsource/tiro-devanagari-hindi": "^5.3.0",
+    "clsx": "^2.1.1",
+    "drizzle-orm": "0.45.3",
+    "exceljs": "4.4.0",
+    "lucide-react": "^1.48.0",
+    "next": "16.3.6",
+    "otpauth": "9.5.2",
+    "pg": "8.23.0",
+    "qrcode": "1.5.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "server-only": "0.0.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.56.1",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^22.10.0",
+    "@types/pg": "8.23.1",
+    "@types/qrcode": "1.5.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "drizzle-kit": "0.31.11",
+    "tailwindcss": "^4.3.3",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=20.12.0"
+  },
+  "allowScripts": {
+    "esbuild@0.18.20": true,
+    "esbuild@0.25.12": true,
+    "esbuild@0.28.2": true,
+    "fsevents@2.3.2": true,
+    "fsevents@2.3.3": true
+  }
+}

@@ -1,0 +1,39 @@
+node_modules/
+.next/
+.next-*/
+out/
+.data/
+*.tsbuildinfo
+next-env.d.ts
+.env
+.env.local
+.env.*.local
+test-results/
+playwright-report/
+.scratch/
+
+# Guides and notes stay private: of the Markdown files, only README.md is published
+*.md
+!/README.md
+
+# Student and staff records stay off GitHub. Spreadsheets and CSV files are never published,
+# except the blank import templates the portal offers for download (public/templates/).
+# "Data templates" is the office's working copy: filled-in files there stay on this computer.
+/Data templates/
+*.xlsx
+*.xls
+*.xlsm
+*.csv
+*.tsv
+*.ods
+*.numbers
+!/public/templates/*.xlsx
+
+# Editors and systems
+.idea/
+.vscode/
+.DS_Store
+
+# All local environment variants stay out of source releases.
+.env*
+!.env.example

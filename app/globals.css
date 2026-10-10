@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   AESRI design tokens — the same green + beige as the public website
+   ------------------------------------------------------------------ */
+@theme {
+  --color-cream-50: #fcfaf5;
+  --color-cream-100: #f6f1e7;
+  --color-cream-200: #efe7d8;
+  --color-cream-300: #e5d9c3;
+  --color-sand-400: #d4c09c;
+  --color-sand-500: #bfa574;
+
+  --color-forest-950: #0d1c14;
+  --color-forest-900: #13271c;
+  --color-forest-800: #1a3827;
+  --color-forest-700: #234e35;
+  --color-forest-600: #2e6443;
+  --color-forest-500: #467a58;
+
+  --color-sage-400: #7f9e84;
+  --color-sage-300: #a8bfa5;
+  --color-sage-200: #cad8c3;
+  --color-sage-100: #e2eadb;
+  --color-sage-50: #eef3ea;
+
+  --color-ochre-600: #86591a;
+  --color-ochre-500: #b7832f;
+  --color-ochre-400: #d1a257;
+  --color-ochre-50: #fbf3e2;
+  --color-clay-500: #a95f3c;
+  --color-clay-600: #8a4527;
+  --color-clay-50: #f8ebe4;
+  /* Only for "waiting for you" counts and dots (cash payments to approve): a clear red, unlike the earthy tones. */
+  --color-alert-600: #c62828;
+
+  --color-ink: #16241b;
+  --color-muted: #536257;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-card: 1.5rem;
+}
+
+@theme inline {
+  --font-display: var(--font-fraunces), "Tiro Devanagari Hindi", Georgia, serif;
+  --font-sans: var(--font-manrope), "Noto Sans Devanagari Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-hindi: "Tiro Devanagari Hindi", "Noto Sans Devanagari Variable", serif;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--color-cream-100);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    line-height: 1.55;
+  }
+
+  ::selection {
+    background: var(--color-forest-700);
+    color: var(--color-cream-50);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  :lang(hi) {
+    line-height: 1.7;
+  }
+
+  :lang(hi) h1,
+  :lang(hi) h2,
+  :lang(hi) h3,
+  h1:lang(hi),
+  h2:lang(hi),
+  h3:lang(hi) {
+    font-family: var(--font-hindi);
+    letter-spacing: 0;
+    line-height: 1.35;
+  }
+
+  /* Devanagari must never be letter-spaced or case-transformed */
+  [lang="hi"],
+  [lang="hi"] * {
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+
+  :focus-visible {
+    outline: 2.5px solid var(--color-ochre-500);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+  }
+
+  /* Tabular numbers everywhere money, marks and dates line up */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@utility card {
+  /* Cards sit in grids and flex rows: let them shrink to the screen instead of pushing the page sideways. */
+  min-width: 0;
+  background: var(--color-cream-50);
+  border-radius: var(--radius-card);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--color-forest-900) 7%, transparent),
+    0 18px 40px -34px rgba(19, 39, 28, 0.45);
+}
+
+@utility eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* Jaali (Rajasthani lattice) texture, used quietly on the sidebar and sign-in */
+.jaali-light {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23f6f1e7' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M28 4 L52 28 L28 52 L4 28 Z'/%3E%3Ccircle cx='28' cy='28' r='9'/%3E%3Cpath d='M28 0v8M28 48v8M0 28h8M48 28h8'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 56px 56px;
+}
+
+.jaali {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23234e35' stroke-opacity='0.07' stroke-width='1'%3E%3Cpath d='M28 4 L52 28 L28 52 L4 28 Z'/%3E%3Ccircle cx='28' cy='28' r='9'/%3E%3Cpath d='M28 0v8M28 48v8M0 28h8M48 28h8'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 56px 56px;
+}
+
+/* Gentle entrance for page content (skipped when motion is reduced) */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.6s var(--ease-out-expo) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in {
+    animation: none;
+  }
+  * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dropdown arrow for <Select> (kept here: Tailwind can't build a class with spaces in a URL) */
+.select-arrow {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23536257' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  background-size: 1.1rem;
+}
+
+/* ------------------------------------------------------------------
+   Printing: slips, receipts and report cards print cleanly on A4
+   ------------------------------------------------------------------ */
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+  body {
+    background: #fff !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .card {
+    box-shadow: none !important;
+  }
+}
+
+.print-only {
+  display: none;
+}
